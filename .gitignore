@@ -1,0 +1,5 @@
+.pio/
+.idea/
+.vscode/
+.clangd/
+.DS_Store
