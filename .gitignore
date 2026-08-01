@@ -3,3 +3,6 @@
 .vscode/
 .clangd/
 .DS_Store
+*.bin
+*.elf
+*.map

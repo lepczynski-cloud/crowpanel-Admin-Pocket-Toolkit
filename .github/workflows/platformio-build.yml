@@ -1,0 +1,22 @@
+name: PlatformIO build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Install PlatformIO Core
+        run: python3 -m pip install --upgrade platformio
+
+      - name: Compile firmware
+        run: pio run
