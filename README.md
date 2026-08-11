@@ -6,7 +6,14 @@ This project turns the small ESP32 touchscreen into a pocket-sized toolkit for e
 
 ## Demo and related links
 
+v1 - 3 apps
+
 [![CrowPanel Admin Pocket Toolkit demo](https://img.youtube.com/vi/lrTHDVkG1Hk/hqdefault.jpg)](https://www.youtube.com/watch?v=lrTHDVkG1Hk)
+
+v2 - 8 apps
+
+[![CrowPanel Admin Pocket Toolkit demo v2 ](https://img.youtube.com/vi/In7P1azFg-0/hqdefault.jpg)](https://www.youtube.com/watch?v=In7P1azFg-0)
+
 
 - Online toolkit: <https://admintoolkit.lepczynski.it/>
 - Blog: <https://lepczynski.it/>
