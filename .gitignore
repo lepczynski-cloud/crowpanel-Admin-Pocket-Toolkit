@@ -6,7 +6,9 @@
 *.bin
 *.elf
 *.map
+.cf-build/
+/dist/
+/node_modules/
 /web/vendor/
 /web/firmware/*.bin
 /web/firmware/*.json
-/web/assets/device-photo.jpg

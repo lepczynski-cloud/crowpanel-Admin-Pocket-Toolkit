@@ -1,3 +1,14 @@
-These firmware files are intentionally not included in the Git source tree.
-The GitHub Actions workflow compiles the current PlatformIO source, checks the resulting binaries and publishes the website and generated firmware together to the gh-pages branch.
-Do not manually upload unrelated binaries here.
+# Firmware is generated at deployment time
+
+This directory intentionally contains no `*.bin` or `*.json` artifacts in Git.
+The Cloudflare Pages build command `bash build-cloudflare.sh` compiles the exact
+ESP32 firmware and generates in `dist/firmware/`:
+
+- `factory.bin` (complete merged binary flashed at 0x0)
+- `firmware.bin` (application at 0x10000, for compatible existing devices)
+- `manifest-factory.json`
+- `manifest-update.json`
+- `release.json` (source commit, checksums, sizes and device identity)
+
+Cloudflare Pages publishes `dist/` atomically. No GitHub Actions or `gh-pages`
+branch is involved.

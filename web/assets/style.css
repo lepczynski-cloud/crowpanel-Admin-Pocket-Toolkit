@@ -4,3 +4,10 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.orb,.glow-one,.glow-two,.live-dot,.photo-frame,.float-chip{animation:none!important}.btn,.tool,.project,.photo-frame{transition:none!important}}
 /* Contain decorative orbits on small screens without changing content width. */
 @media(max-width:760px){.hero-visual{overflow:hidden;border-radius:18px}.orb-a{max-width:95%}.orb-b{max-width:100%}.backdrop{overflow:clip}}
+
+/* Fallback only if the original video image and both official YouTube cover URLs fail. */
+.photo-fallback {text-decoration:none;gap:12px;letter-spacing:0;font-size:15px}
+.photo-fallback .fallback-play {width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:#64e8b8;color:#06120d;font-size:25px}
+.photo-fallback:hover .fallback-play {background:#83f8cc}
+
+.firmware-recovery{font-size:12px;color:var(--sub);line-height:1.55;margin-top:9px}.firmware-recovery p{margin:10px 0}.retry-firmware{padding:6px 11px;border-radius:8px;border:1px solid #3e6358;color:var(--mint);background:#13252a;font-size:12px;margin:7px 7px 0 0}.retry-firmware:disabled{opacity:.55;cursor:wait}.firmware-recovery a{color:var(--mint);font-weight:600}.firmware-recovery [hidden]{display:none}

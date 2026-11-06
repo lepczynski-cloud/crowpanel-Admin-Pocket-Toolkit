@@ -14,7 +14,7 @@
   <link rel="canonical" href="https://esp32-admin-toolkit.lepczynski.it/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/style.css">
-  <script src="/assets/main.js" defer></script>
+  <script src="/assets/main.js?v=photo-fix-20261106" defer></script>
   <title>ESP32 Admin Pocket Toolkit | Browser Firmware Installer</title>
 </head>
 <body>
@@ -39,8 +39,8 @@
       <div class="hero-visual reveal" aria-label="Actual Admin Pocket Toolkit device from the project demonstration">
         <div class="orb orb-a"></div><div class="orb orb-b"></div>
         <div class="photo-frame">
-          <img src="/assets/device-photo.jpg" alt="Real image from the Admin Pocket Toolkit demonstration video, showing the ESP32 touchscreen project" fetchpriority="high">
-          <div class="photo-fallback">REAL DEVICE PHOTO<br><small>Published from the project video during deployment</small></div>
+          <img src="/assets/device-photo.jpg?v=photo-fix-20261106" data-device-photo alt="Real image from the Admin Pocket Toolkit demonstration video, showing the ESP32 touchscreen project" fetchpriority="high">
+          <a class="photo-fallback" href="https://www.youtube.com/watch?v=In7P1azFg-0" target="_blank" rel="noopener noreferrer" aria-label="Watch real ESP32 device in the project video"><span class="fallback-play">▶</span><span>Watch the real ESP32 in action</span></a>
           <div class="photo-caption"><span class="live-dot"></span> THE ACTUAL BUILD <span class="photo-marker">ELECROW 2.8”</span></div>
         </div>
         <div class="float-chip chip-a"><span>▣</span><div><small>CONNECTED VIA USB</small><strong>No IDE required</strong></div></div>
@@ -48,7 +48,7 @@
       </div>
     </section>
 
-    <section class="facts-bar"><div class="container facts-inner"><span>NO APPLICATION BACKEND</span><span>LOCALLY RUNNING FIRMWARE</span><span>WEB SERIAL FLASHING</span><span>AUTOMATIC GITHUB BUILDS</span></div></section>
+    <section class="facts-bar"><div class="container facts-inner"><span>NO APPLICATION BACKEND</span><span>LOCALLY RUNNING FIRMWARE</span><span>WEB SERIAL FLASHING</span><span>AUTOMATIC CLOUDFLARE BUILDS</span></div></section>
 
     <section class="section container" id="install">
       <div class="section-head reveal"><div><span class="eyebrow">01 / GET STARTED</span><h2>From repo to device.<br><em>Without the setup.</em></h2></div><p>There is no need to configure PlatformIO or compile firmware on your computer. Plug in the correct CrowPanel, choose the USB port and flash the latest successful build.</p></div>
@@ -66,10 +66,11 @@
               <span slot="not-allowed" class="install-help">Open this website using HTTPS to flash your ESP32.</span>
             </esp-web-install-button>
           </div>
+          <div class="firmware-recovery" aria-live="polite"><p id="firmware-diagnostics" hidden></p><button id="retry-firmware" class="retry-firmware" type="button">Retry firmware check</button> <a id="firmware-diagnostics-link" href="/firmware/release.json" target="_blank" rel="noopener noreferrer" hidden>Open release manifest ↗</a></div>
           <p class="flash-disclaimer"><strong>Note:</strong> Flashing can overwrite existing firmware and device data. Always check the exact board model. The advanced update option requires a compatible existing partition layout.</p>
-          <a class="download-link" id="download-firmware" href="https://github.com/lepczynski-cloud/crowpanel-Admin-Pocket-Toolkit/actions" target="_blank" rel="noopener noreferrer">Check build status and download artifacts <span aria-hidden="true">↗</span></a>
+          <a class="download-link" id="download-firmware" href="/firmware/release.json" target="_blank" rel="noopener noreferrer">View firmware and download <span aria-hidden="true">↗</span></a>
         </article>
-        <div class="steps reveal"><article><span class="step-index">01</span><div><h3>Connect the CrowPanel</h3><p>Use a USB-C data cable connected directly to your desktop or laptop. A charge-only cable will not work.</p></div></article><article><span class="step-index">02</span><div><h3>Open Chrome or Edge</h3><p>Web Serial needs a compatible desktop browser and HTTPS. Select the correct serial port when prompted.</p></div></article><article><span class="step-index">03</span><div><h3>Flash and start using it</h3><p>Follow the browser installer, then restart the device if needed. The toolkit itself works without an internet connection.</p></div></article><div class="steps-note"><span>⌁</span> Firmware, manifests and the website are published together from the same successful GitHub Actions build. A failed build is never marked as the latest release.</div></div>
+        <div class="steps reveal"><article><span class="step-index">01</span><div><h3>Connect the CrowPanel</h3><p>Use a USB-C data cable connected directly to your desktop or laptop. A charge-only cable will not work.</p></div></article><article><span class="step-index">02</span><div><h3>Open Chrome or Edge</h3><p>Web Serial needs a compatible desktop browser and HTTPS. Select the correct serial port when prompted.</p></div></article><article><span class="step-index">03</span><div><h3>Flash and start using it</h3><p>Follow the browser installer, then restart the device if needed. The toolkit itself works without an internet connection.</p></div></article><div class="steps-note"><span>⌁</span> Cloudflare Pages compiles and publishes the matching firmware, manifests and website in one deployment from the same Git commit. No GitHub Actions or local compilation needed.</div></div>
       </div>
     </section>
 
@@ -86,7 +87,7 @@
       </div></div></section>
 
     <section class="section container demo-section" id="demo"><div class="section-head reveal"><div><span class="eyebrow">03 / SEE IT RUNNING</span><h2>Not a mockup.<br><em>Real hardware.</em></h2></div><p>Watch the longer YouTube walkthrough to see the interface, wireless scanning and calculations on the actual device.</p></div>
-      <div class="video-frame reveal" id="video-frame"><button type="button" id="play-video" class="video-poster" aria-label="Play the Admin Pocket Toolkit YouTube demonstration"><img loading="lazy" src="/assets/device-photo.jpg" alt="Admin Pocket Toolkit YouTube video preview"><span class="play-button">▶</span><span class="video-title">I Put 8 Admin Tools on a Tiny ESP32 Touchscreen</span></button></div>
+      <div class="video-frame reveal" id="video-frame"><button type="button" id="play-video" class="video-poster" aria-label="Play the Admin Pocket Toolkit YouTube demonstration"><img loading="lazy" src="/assets/device-photo.jpg?v=photo-fix-20261106" data-device-photo alt="Admin Pocket Toolkit YouTube video preview"><span class="play-button">▶</span><span class="video-title">I Put 8 Admin Tools on a Tiny ESP32 Touchscreen</span></button></div>
       <div class="demo-links"><a href="https://www.youtube.com/watch?v=In7P1azFg-0" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a><a href="https://github.com/lepczynski-cloud/crowpanel-Admin-Pocket-Toolkit" target="_blank" rel="noopener noreferrer">Explore the code ↗</a></div>
     </section>
 

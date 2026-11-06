@@ -35,7 +35,7 @@ def default_environment(config_path: Path) -> str:
     if not envs:
         envs = [name[4:] for name in config.sections() if name.startswith("env:")]
     if len(envs) != 1:
-        raise RuntimeError("Expected one default PlatformIO env. Set PIO_ENV explicitly in the GitHub workflow.")
+        raise RuntimeError("Expected one default PlatformIO env. Set the build environment explicitly.")
     return envs[0]
 
 
@@ -76,7 +76,7 @@ def git_rev() -> str:
     try:
         return subprocess.check_output(["git", "rev-parse", "--short=10", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip()
     except (OSError, subprocess.CalledProcessError):
-        return os.getenv("GITHUB_SHA", "local")[:10]
+        return (os.getenv("CF_PAGES_COMMIT_SHA") or "local")[:10]
 
 
 def run(args: argparse.Namespace) -> None:
@@ -114,7 +114,7 @@ def run(args: argparse.Namespace) -> None:
         "chip_family": "ESP32",
         "board": "Elecrow CrowPanel 2.8 inch ESP32-WROOM-32-N4",
         "environment": env,
-        "source_commit": os.getenv("GITHUB_SHA", git_rev()),
+        "source_commit": os.getenv("CF_PAGES_COMMIT_SHA") or git_rev(),
         "build_time_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "flash_size_bytes": flash_bytes,
         "firmware_sha256": sha256(app_destination),
