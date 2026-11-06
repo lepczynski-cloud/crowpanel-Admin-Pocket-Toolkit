@@ -6,3 +6,7 @@
 *.bin
 *.elf
 *.map
+/web/vendor/
+/web/firmware/*.bin
+/web/firmware/*.json
+/web/assets/device-photo.jpg

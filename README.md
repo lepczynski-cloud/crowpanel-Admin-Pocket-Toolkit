@@ -1,18 +1,32 @@
 # CrowPanel Admin Pocket Toolkit
 
+<!-- ESP32-WEB-INSTALL-START -->
+
+## Install the latest ESP32 firmware from your browser
+
+**[ESP32 Admin Pocket Toolkit - official device page and installer](https://esp32-admin-toolkit.lepczynski.it/)**
+
+Use the Elecrow **2.8-inch CrowPanel ESP32-WROOM-32** and a USB data cable. Open the website over HTTPS in a supported desktop browser (Chrome or Edge). Choose the USB serial port and use **Full install**. You do **not** need to install PlatformIO, CLion or another local build environment.
+
+The website serves firmware that GitHub Actions **automatically compiles from the current `main` source commit**. The firmware binary, checksums, manifest and site are published together only when the build succeeds. If you want to customize the firmware, the existing PlatformIO instructions below are still available.
+
+**[Watch the complete real-hardware demonstration](https://www.youtube.com/watch?v=In7P1azFg-0)** · **[Online browser-only Admin Toolkit](https://admintoolkit.lepczynski.it/)**
+
+Do not use this firmware on a different ESP32 board or display variant. Flashing can overwrite existing software and settings.
+
+<!-- ESP32-WEB-INSTALL-END -->
+
 Offline admin utilities for the Elecrow CrowPanel 2.8-inch ESP32 Miner/HMI display.
 
 This project turns the small ESP32 touchscreen into a pocket-sized toolkit for everyday administration, networking, time-zone checks, cron schedules, storage planning, backups and quick wireless field checks.
 
 ## Demo and related links
 
-v1 - 3 apps
-
-[![CrowPanel Admin Pocket Toolkit demo](https://img.youtube.com/vi/lrTHDVkG1Hk/hqdefault.jpg)](https://www.youtube.com/watch?v=lrTHDVkG1Hk)
-
 v2 - 8 apps
 
 [![CrowPanel Admin Pocket Toolkit demo v2 ](https://img.youtube.com/vi/In7P1azFg-0/hqdefault.jpg)](https://www.youtube.com/watch?v=In7P1azFg-0)
+
+Earlier v1 (3 tools): [watch on YouTube](https://www.youtube.com/watch?v=lrTHDVkG1Hk)
 
 
 - Online toolkit: <https://admintoolkit.lepczynski.it/>
@@ -189,7 +203,7 @@ List detected USB serial ports:
 pio device list
 ```
 
-GitHub Actions also compiles the firmware automatically on pushes and pull requests.
+GitHub Actions validates pull requests and, on each push to `main`, builds and publishes the latest successful version together with the static web installer. See [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## Upload troubleshooting
 

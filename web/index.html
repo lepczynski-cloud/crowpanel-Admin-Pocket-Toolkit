@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#080c14">
+  <meta name="description" content="Turn the Elecrow 2.8-inch ESP32 touchscreen into an offline admin toolkit. Eight useful tools, real hardware demo, open source firmware and one-click browser installation. No local IDE required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://esp32-admin-toolkit.lepczynski.it/">
+  <meta property="og:title" content="ESP32 Admin Pocket Toolkit | Install from your browser">
+  <meta property="og:description" content="Eight practical admin tools on a tiny ESP32 touchscreen. Flash directly from your browser, no local build needed.">
+  <meta property="og:image" content="https://esp32-admin-toolkit.lepczynski.it/assets/device-photo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://esp32-admin-toolkit.lepczynski.it/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/main.js" defer></script>
+  <title>ESP32 Admin Pocket Toolkit | Browser Firmware Installer</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="backdrop" aria-hidden="true"><div class="grid-lines"></div><div class="glow-one"></div><div class="glow-two"></div></div>
+  <header class="topbar">
+    <div class="container nav-inner">
+      <a class="logo" href="#main" aria-label="ESP32 Admin Pocket Toolkit home"><span class="logo-mark">A<span>.</span></span><span class="logo-type">ADMIN POCKET<small>ESP32 EDITION</small></span></a>
+      <nav aria-label="Main navigation"><a href="#features">Tools</a><a href="#how">How it works</a><a href="#demo">Video</a><a href="#projects">Projects</a></nav>
+      <a class="nav-action" href="#install">Install firmware <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="main">
+    <section class="container hero">
+      <div class="hero-copy reveal">
+        <span class="eyebrow"><span class="live-dot"></span> OPEN SOURCE · ESP32 · OFFLINE FIRST</span>
+        <h1>A tiny screen.<br><em>A surprisingly useful</em><br>admin toolkit.</h1>
+        <p>I gave an ESP32 Bitcoin miner display a new job. It now runs eight practical tools for networking, Linux and infrastructure planning, right on its 2.8-inch touchscreen.</p>
+        <div class="hero-buttons"><a class="btn btn-primary" href="#install">Install from browser <span aria-hidden="true">↗</span></a><a class="btn btn-muted" href="https://github.com/lepczynski-cloud/crowpanel-Admin-Pocket-Toolkit" target="_blank" rel="noopener noreferrer">View source code</a></div>
+        <div class="hero-meta"><span><b>8</b> offline-first tools</span><i></i><span><b>320 × 240</b> touchscreen</span><i></i><span><b>MIT</b> open source</span></div>
+      </div>
+      <div class="hero-visual reveal" aria-label="Actual Admin Pocket Toolkit device from the project demonstration">
+        <div class="orb orb-a"></div><div class="orb orb-b"></div>
+        <div class="photo-frame">
+          <img src="/assets/device-photo.jpg" alt="Real image from the Admin Pocket Toolkit demonstration video, showing the ESP32 touchscreen project" fetchpriority="high">
+          <div class="photo-fallback">REAL DEVICE PHOTO<br><small>Published from the project video during deployment</small></div>
+          <div class="photo-caption"><span class="live-dot"></span> THE ACTUAL BUILD <span class="photo-marker">ELECROW 2.8”</span></div>
+        </div>
+        <div class="float-chip chip-a"><span>▣</span><div><small>CONNECTED VIA USB</small><strong>No IDE required</strong></div></div>
+        <div class="float-chip chip-b"><span>◉</span><div><small>NETWORK DIAGNOSTICS</small><strong>Wi-Fi &amp; BLE scanning</strong></div></div>
+      </div>
+    </section>
+
+    <section class="facts-bar"><div class="container facts-inner"><span>NO APPLICATION BACKEND</span><span>LOCALLY RUNNING FIRMWARE</span><span>WEB SERIAL FLASHING</span><span>AUTOMATIC GITHUB BUILDS</span></div></section>
+
+    <section class="section container" id="install">
+      <div class="section-head reveal"><div><span class="eyebrow">01 / GET STARTED</span><h2>From repo to device.<br><em>Without the setup.</em></h2></div><p>There is no need to configure PlatformIO or compile firmware on your computer. Plug in the correct CrowPanel, choose the USB port and flash the latest successful build.</p></div>
+      <div class="install-layout">
+        <article class="install-card reveal">
+          <div class="install-card-top"><span class="pill"><span id="release-led" class="led muted"></span><span id="release-status">Checking firmware availability</span></span><span class="hardware-chip">ESP32-WROOM-32</span></div>
+          <h3>Install Admin Pocket Toolkit</h3><p>For the <strong>Elecrow CrowPanel 2.8-inch miner/HMI</strong> with the 320 × 240 resistive touchscreen. Do not flash to an ESP32-S3, another CrowPanel size or an unrelated ESP32 board.</p>
+          <div class="firmware-info" id="build-info" hidden><span>Latest successful build</span><strong id="build-version">-</strong><small id="build-sha"></small></div>
+          <div class="flash-choice" role="group" aria-label="Flashing mode"><button type="button" id="mode-full" class="flash-choice-item active" aria-pressed="true">Full install<span>Recommended · new setup</span></button><button type="button" id="mode-update" class="flash-choice-item" aria-pressed="false">App update<span>Advanced · matching partitions only</span></button></div>
+          <div class="web-serial-shell" id="installer-shell" aria-live="polite">
+            <div id="installer-loading" class="install-placeholder">The install button will appear when a verified firmware build is published.</div>
+            <esp-web-install-button id="web-install" manifest="/firmware/manifest-factory.json" hidden>
+              <button type="button" class="btn btn-primary install-trigger" slot="activate">Connect &amp; install firmware <span aria-hidden="true">↗</span></button>
+              <span slot="unsupported" class="install-help">Web Serial is unavailable. Please open the site in desktop Chrome or Edge over HTTPS.</span>
+              <span slot="not-allowed" class="install-help">Open this website using HTTPS to flash your ESP32.</span>
+            </esp-web-install-button>
+          </div>
+          <p class="flash-disclaimer"><strong>Note:</strong> Flashing can overwrite existing firmware and device data. Always check the exact board model. The advanced update option requires a compatible existing partition layout.</p>
+          <a class="download-link" id="download-firmware" href="https://github.com/lepczynski-cloud/crowpanel-Admin-Pocket-Toolkit/actions" target="_blank" rel="noopener noreferrer">Check build status and download artifacts <span aria-hidden="true">↗</span></a>
+        </article>
+        <div class="steps reveal"><article><span class="step-index">01</span><div><h3>Connect the CrowPanel</h3><p>Use a USB-C data cable connected directly to your desktop or laptop. A charge-only cable will not work.</p></div></article><article><span class="step-index">02</span><div><h3>Open Chrome or Edge</h3><p>Web Serial needs a compatible desktop browser and HTTPS. Select the correct serial port when prompted.</p></div></article><article><span class="step-index">03</span><div><h3>Flash and start using it</h3><p>Follow the browser installer, then restart the device if needed. The toolkit itself works without an internet connection.</p></div></article><div class="steps-note"><span>⌁</span> Firmware, manifests and the website are published together from the same successful GitHub Actions build. A failed build is never marked as the latest release.</div></div>
+      </div>
+    </section>
+
+    <section class="section tools-section" id="features"><div class="container"><div class="section-head reveal"><div><span class="eyebrow">02 / WHAT'S INSIDE</span><h2>Eight tools.<br><em>One small device.</em></h2></div><p>Simple tasks that do not need another browser tab. All calculators and references are stored directly in the firmware.</p></div>
+      <div class="tools-grid">
+        <article class="tool reveal"><span class="tool-icon">/24</span><span class="tool-count">01</span><h3>CIDR calculator</h3><p>IPv4 networks, masks, broadcast addresses and usable hosts.</p></article>
+        <article class="tool reveal"><span class="tool-icon">VLSM</span><span class="tool-count">02</span><h3>VLSM planner</h3><p>Allocate subnets for up to four LANs based on host requirements.</p></article>
+        <article class="tool highlight reveal"><span class="tool-icon">◉</span><span class="tool-count">03</span><h3>Wi-Fi &amp; BLE scanner</h3><p>Channels, RSSI, active/passive scans and live signal history.</p></article>
+        <article class="tool reveal"><span class="tool-icon">*/5</span><span class="tool-count">04</span><h3>Cron parser</h3><p>Build, validate and understand five-field Unix cron expressions.</p></article>
+        <article class="tool reveal"><span class="tool-icon">TB</span><span class="tool-count">05</span><h3>Capacity planner</h3><p>Estimate storage requirements, backups, retention and copies.</p></article>
+        <article class="tool reveal"><span class="tool-icon">rwx</span><span class="tool-count">06</span><h3>chmod calculator</h3><p>Linux permissions in symbolic and numeric forms.</p></article>
+        <article class="tool reveal"><span class="tool-icon">UTC</span><span class="tool-count">07</span><h3>World clock</h3><p>Convert between offline time zones with a custom UTC offset.</p></article>
+        <article class="tool reveal"><span class="tool-icon">200</span><span class="tool-count">08</span><h3>Quick lookup</h3><p>Common HTTP status codes and TCP/UDP service ports.</p></article>
+      </div></div></section>
+
+    <section class="section container demo-section" id="demo"><div class="section-head reveal"><div><span class="eyebrow">03 / SEE IT RUNNING</span><h2>Not a mockup.<br><em>Real hardware.</em></h2></div><p>Watch the longer YouTube walkthrough to see the interface, wireless scanning and calculations on the actual device.</p></div>
+      <div class="video-frame reveal" id="video-frame"><button type="button" id="play-video" class="video-poster" aria-label="Play the Admin Pocket Toolkit YouTube demonstration"><img loading="lazy" src="/assets/device-photo.jpg" alt="Admin Pocket Toolkit YouTube video preview"><span class="play-button">▶</span><span class="video-title">I Put 8 Admin Tools on a Tiny ESP32 Touchscreen</span></button></div>
+      <div class="demo-links"><a href="https://www.youtube.com/watch?v=In7P1azFg-0" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a><a href="https://github.com/lepczynski-cloud/crowpanel-Admin-Pocket-Toolkit" target="_blank" rel="noopener noreferrer">Explore the code ↗</a></div>
+    </section>
+
+    <section class="section container" id="how"><div class="story reveal"><div><span class="eyebrow">04 / THE IDEA</span><h2>A Bitcoin miner<br><em>with a better job.</em></h2><p>I originally had an ESP32 display showing mining statistics. I wanted to make something more useful for my everyday work with networking, Linux and infrastructure.</p><p>The result is a small, standalone utility rather than a replacement for a terminal. It does not need a PC companion, API key or account to run. Wi-Fi/BLE radios stay disabled until you choose to scan. The clock has no NTP or battery-backed RTC, so its time must be set manually after power loss.</p><a href="https://lepczynski.it/" target="_blank" rel="noopener noreferrer">Read more on the blog ↗</a></div><div class="spec-panel"><h3>Hardware &amp; software</h3><div><span>Board</span><strong>Elecrow CrowPanel 2.8-inch</strong></div><div><span>Chip</span><strong>ESP32-WROOM-32-N4</strong></div><div><span>Screen</span><strong>320 × 240, resistive touch</strong></div><div><span>Firmware</span><strong>C++ · Arduino · PlatformIO</strong></div><div><span>License</span><strong>MIT · Open source</strong></div></div></div></section>
+
+    <section class="section projects-wrap" id="projects"><div class="container"><div class="section-head reveal"><div><span class="eyebrow">05 / OTHER PROJECTS</span><h2>More things<br><em>I've built.</em></h2></div><p>Small embedded experiments, useful web tools and open-source projects.</p></div>
+      <div class="project-grid">
+        <a href="https://admintoolkit.lepczynski.it/" class="project reveal"><span class="project-symbol">{ /24 }</span><small>BROWSER TOOLKIT</small><h3>Online Admin Toolkit</h3><p>Admin and networking utilities in your browser. No backend.</p><b>Open the web version ↗</b></a>
+        <a href="https://m5stack-touch-control-deck.lepczynski.it/" class="project reveal"><span class="project-symbol">M5</span><small>BLUETOOTH HID</small><h3>M5Stack Control Deck</h3><p>Touchscreen shortcuts, multimedia controls and wireless input.</p><b>See project ↗</b></a>
+        <a href="https://crowpanel-rotary-buddy.lepczynski.it/" class="project reveal"><span class="project-symbol">☺</span><small>ROTARY DISPLAY</small><h3>CrowPanel Rotary Buddy</h3><p>Multimedia dial and animated desktop buddy.</p><b>See project ↗</b></a>
+        <a href="https://github.com/lepczynski-cloud/ESP32-PC-Control-Deck" class="project reveal"><span class="project-symbol">PC</span><small>USB + HOST APP REQUIRED</small><h3>ESP32 PC Control Deck</h3><p>PC system stats and local actions. Needs a companion on the computer.</p><b>See source ↗</b></a>
+        <a href="https://github.com/lepczynski-cloud/crowpanel-pocket-arcade" class="project reveal"><span class="project-symbol">▶</span><small>OFFLINE GAMES</small><h3>CrowPanel Pocket Arcade</h3><p>Touchscreen mini games without a cloud service.</p><b>See source ↗</b></a>
+        <a href="https://github.com/lepczynski-cloud/crowpanel_AI_assistant" class="project reveal"><span class="project-symbol">AI</span><small>LOCAL LLM</small><h3>CrowPanel AI Assistant</h3><p>An ESP32 front end for a local Ollama server.</p><b>See source ↗</b></a>
+      </div></div></section>
+  </main>
+  <footer><div class="container footer-inner"><div><b>ESP32 ADMIN POCKET TOOLKIT</b><p>An independent open-source project by Wojciech Lepczyński.</p></div><div><a href="https://lepczynski.it/">Blog</a><a href="https://www.youtube.com/@WojciechLepczynski">YouTube</a><a href="https://github.com/lepczynski-cloud">GitHub</a><a href="https://admintoolkit.lepczynski.it/">Online toolkit</a></div></div></footer>
+</body>
+</html>
