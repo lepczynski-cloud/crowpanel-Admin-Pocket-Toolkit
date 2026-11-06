@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://esp32-admin-toolkit.lepczynski.it/sitemap.xml

@@ -1,0 +1,15 @@
+{
+  "board": "Elecrow CrowPanel 2.8 inch ESP32-WROOM-32-N4",
+  "boot_app0_included": true,
+  "build_time_utc": "2026-11-06T15:07:11+00:00",
+  "chip_family": "ESP32",
+  "environment": "crowpanel_28",
+  "factory_sha256": "bf414f69c7fe5d482c563ce891d6899b9fadbb9155d13d0fcea7bc3db31073cc",
+  "factory_size_bytes": 1139184,
+  "firmware_sha256": "30aecc3fa98f18aee2f926f4ef2dc676451f48f23ee02abe7d3caf595ed5a152",
+  "firmware_size_bytes": 1073648,
+  "flash_size_bytes": 4194304,
+  "name": "Admin Pocket Toolkit",
+  "source_commit": "16ab345380dc48ef2e3a6a2347cea2fdb231d9e4",
+  "version": "2026.11.06+16ab345380"
+}

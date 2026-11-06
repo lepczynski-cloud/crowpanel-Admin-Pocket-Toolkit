@@ -1,0 +1,17 @@
+{
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "offset": 0,
+          "path": "factory.bin"
+        }
+      ]
+    }
+  ],
+  "name": "Admin Pocket Toolkit",
+  "new_install_improv_wait_time": 0,
+  "new_install_prompt_erase": true,
+  "version": "2026.11.06+16ab345380"
+}
