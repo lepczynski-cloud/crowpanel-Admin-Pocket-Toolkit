@@ -48,7 +48,7 @@ retry.addEventListener('click', () => loadFirmware());
 async function getJson(path) {
   const response = await fetch(localUrl(path), { cache: 'no-store', headers: { Accept: 'application/json' } });
   if (!response.ok) {
-    throw new Error(`${path} returned HTTP ${response.status}. Cloudflare Pages may still be using the old settings. Use branch main, build command bash build-cloudflare.sh, output dist.`);
+    throw new Error(`${path} returned HTTP ${response.status}. Cloudflare Pages may still be using the old settings. Check Cloudflare Pages: production branch main, build command bash build-cloudflare.sh, output dist.`);
   }
   const contentType = response.headers.get('content-type') || '';
   if (contentType.includes('text/html')) {

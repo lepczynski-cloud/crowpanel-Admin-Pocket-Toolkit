@@ -1,14 +1,17 @@
+# Build outputs (Cloudflare compiles everything during deployment)
 .pio/
-.idea/
-.vscode/
-.clangd/
-.DS_Store
+.cf-build/
+dist/
+.build-venv/
+.build-web-tools/
+node_modules/
+web/firmware/
+web/vendor/
+__pycache__/
+*.pyc
 *.bin
 *.elf
 *.map
-.cf-build/
-/dist/
-/node_modules/
-/web/vendor/
-/web/firmware/*.bin
-/web/firmware/*.json
+.idea/
+.vscode/
+.DS_Store

@@ -18,7 +18,9 @@ assert release['chip_family'] == 'ESP32', 'Wrong chip family'
 assert release['environment'] == 'crowpanel_28', 'Wrong PlatformIO environment'
 assert release['board'].startswith('Elecrow CrowPanel 2.8'), 'Wrong hardware model'
 if args.commit:
-    assert release['source_commit'] == args.commit, 'Firmware does not match the Cloudflare source commit'
+    assert release['source_commit'] == args.commit, (
+        f"Commit mismatch: firmware={release['source_commit']}, expected={args.commit}"
+    )
 
 for manifest_name, bin_name, hash_key, offset in [
     ('manifest-factory.json', 'factory.bin', 'factory_sha256', 0),

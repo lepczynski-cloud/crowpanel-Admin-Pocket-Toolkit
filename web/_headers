@@ -12,7 +12,7 @@
   Cache-Control: no-cache, must-revalidate
 
 /firmware/*
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store
 
 /assets/*
-  Cache-Control: public, max-age=3600
+  Cache-Control: no-cache, must-revalidate

@@ -8,9 +8,9 @@
 
 Use the Elecrow **2.8-inch CrowPanel ESP32-WROOM-32** and a USB data cable. Open the website over HTTPS in a supported desktop browser (Chrome or Edge). Choose the USB serial port and use **Full install**. You do **not** need to install PlatformIO, CLion or another local build environment.
 
-The website serves firmware that Cloudflare Pages **automatically compiles from the current `main` source commit**. The firmware binary, checksums, manifest and site are published together only when the build succeeds. If you want to customize the firmware, the existing PlatformIO instructions below are still available.
+The website serves firmware that Cloudflare Pages **automatically compiles from the current `main` Git commit**. The firmware binary, checksums, manifest and site are published together only when the build succeeds. If you want to customize the firmware, the existing PlatformIO instructions below are still available.
 
-**Deployment note:** Cloudflare Pages uses the `main` branch, build command `bash build-cloudflare.sh`, and output directory `dist`. Firmware, checksums and manifests are generated during the Cloudflare build and deployed atomically with the static site. There are no Cloudflare Pages. See [DEPLOYMENT.md](DEPLOYMENT.md) for the exact setup.
+**Cloudflare Pages setup (once):** connect this repository, select branch `main` and build system v3, set build command `bash build-cloudflare.sh`, build output directory `dist`, and leave the root directory empty. Node.js and Python use Cloudflare maintained build runtimes (no version files in this repository). Each successful deployment builds the firmware and site from the same commit. No GitHub Actions, `gh-pages` or local compiler is required.
 
 **[Watch the complete real-hardware demonstration](https://www.youtube.com/watch?v=In7P1azFg-0)** · **[Online browser-only Admin Toolkit](https://admintoolkit.lepczynski.it/)**
 
@@ -205,7 +205,7 @@ List detected USB serial ports:
 pio device list
 ```
 
-Cloudflare Pages validates pull requests and, on each push to `main`, builds and publishes the latest successful version together with the static web installer. See [DEPLOYMENT.md](DEPLOYMENT.md).
+On each push to `main`, Cloudflare Pages builds and publishes the website and latest successful firmware together. Cloudflare Pages settings: production `main`, command `bash build-cloudflare.sh`, output `dist`, build system v3.
 
 ## Upload troubleshooting
 

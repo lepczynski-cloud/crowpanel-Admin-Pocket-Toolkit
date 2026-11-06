@@ -12,7 +12,6 @@ import configparser
 from datetime import datetime, timezone
 import hashlib
 import json
-import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -72,16 +71,18 @@ def install_manifest(version: str, filename: str, offset: int) -> dict:
     }
 
 
-def git_rev() -> str:
-    try:
-        return subprocess.check_output(["git", "rev-parse", "--short=10", "HEAD"], cwd=ROOT, text=True, stderr=subprocess.DEVNULL).strip()
-    except (OSError, subprocess.CalledProcessError):
-        return (os.getenv("CF_PAGES_COMMIT_SHA") or "local")[:10]
+def validated_commit(value: str) -> str:
+    import re
+    commit = value.strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{40}", commit):
+        raise RuntimeError("The publisher requires a complete 40-character Git commit SHA")
+    return commit
 
 
 def run(args: argparse.Namespace) -> None:
     if args.chip != EXPECTED_CHIP:
         raise RuntimeError("This package is for ESP32-WROOM-32-N4 only, not ESP32-S3.")
+    commit = validated_commit(args.commit)
     env = args.environment or default_environment(ROOT / "platformio.ini")
     build = ROOT / ".pio" / "build" / env
     app = require_bin(build / "firmware.bin", image=True)
@@ -107,14 +108,14 @@ def run(args: argparse.Namespace) -> None:
     if tmp_factory.stat().st_size > flash_bytes:
         raise RuntimeError("Merged factory image exceeds the 4 MB device flash")
     tmp_factory.replace(output / "factory.bin")
-    version = f"{datetime.now(timezone.utc):%Y.%m.%d}+{git_rev()}"
+    version = f"{datetime.now(timezone.utc):%Y.%m.%d}+{commit[:10]}"
     release = {
         "name": "Admin Pocket Toolkit",
         "version": version,
         "chip_family": "ESP32",
         "board": "Elecrow CrowPanel 2.8 inch ESP32-WROOM-32-N4",
         "environment": env,
-        "source_commit": os.getenv("CF_PAGES_COMMIT_SHA") or git_rev(),
+        "source_commit": commit,
         "build_time_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "flash_size_bytes": flash_bytes,
         "firmware_sha256": sha256(app_destination),
@@ -134,7 +135,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--environment", "-e", default=None)
     parser.add_argument("--chip", default="ESP32")
-    parser.add_argument("--output", default="web/firmware")
+    parser.add_argument("--output", default="dist/firmware")
+    parser.add_argument("--commit", required=True, help="Full Git SHA shared by the publisher and verifier")
     args = parser.parse_args()
     try:
         run(args)
